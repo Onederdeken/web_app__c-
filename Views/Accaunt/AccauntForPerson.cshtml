@@ -1,0 +1,50 @@
+@model Person
+<script src="/home/user/Source/test_drive/Application2/wwwroot/js/Accaunt.js"></script>
+<link rel="stylesheet" href="/home/user/Source/test_drive/Application2/wwwroot/css/site.css">
+
+
+<div class="main_content_accaunt">
+    <h1>Аккаунт покупателя</h1>
+    <div class="content_photo">
+        <div class="img_accaunt" >
+            <img class="img_accaunt_input" src=@Model.DirectoryPhotoUser>
+        </div>
+
+        <div class="div_button_change_photo">
+            <form asp-action="ChangePhoto" asp-controller="Accaunt" enctype="multipart/form-data">
+                <span class="button_photo" >
+                    <button  class="Button_change_photo" type="button"><label for="PhotoChange"><input onchange="var batton = document.querySelector('.Button_change_photo');batton.setAttribute('type','submit'); batton.click()" type="file" name="filebase" id="PhotoChange" multiple hidden>изменить фото</label></button>      
+                </span> 
+            </form>
+        </div>
+    </div>
+
+    <div class="main_info" >
+        <div class="info_user" >
+            <label for="NickName">Имя: @Model.NickName</label>
+        </div>
+        <div class="info_user">
+            <label for="Telephone">Телефон: @Model.Telephone</label>
+        </div>
+        <div>
+            <button class="buttons" type="button" onclick="location.href='@Url.Action("ChangeProfile", "Accaunt")'">Редактировать профиль</button>
+        </div>
+        <div class="info_user"> 
+            <label for="CountMoney"> деньги на счету:@Model.CMoney ₽</label>
+        </div>
+        <div class="div_form_add_money">
+            <form id="form_add_money" class="Money" method="post" asp-action="AddMoney" asp-controller="Accaunt">
+                <button id="button_add_money" class="buttons" type="button" onclick="Money()">Пополнить счет</button>
+                <script>
+                    $(".butt_money").mask("999999999");
+                </script>
+            </form>
+        </div>
+        <div>
+            
+            <button class="button_out" type="button" onclick="location.href='@Url.Action("OutAcc", "Accaunt")'">Выйти из аккаунта</button>
+        </div> 
+        
+    </div>
+    
+</div>

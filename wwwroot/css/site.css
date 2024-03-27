@@ -1,0 +1,60 @@
+input{
+  height: 35px;
+  width: 300px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 30px;
+  overflow-wrap: normal;
+  outline: none;
+  box-shadow: 6px 6px 6px gray;
+  font-size: large;
+}
+#dialogoverlay {
+  display: none;
+  opacity: .8;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background: #FFF;
+  width: 100%;
+  z-index: 10;
+}
+
+#dialogbox {
+  display: none;
+  position: absolute;
+  background-color: whitesmoke;
+  border-color: black;
+  border-radius: 20px;
+  
+  justify-content: space-between;
+  width: 550px;
+  height: 300px;
+  z-index: 10;
+}
+
+
+
+#dialogboxhead {
+  background: silver;
+  font-size: 19px;
+  padding: 10px;
+  color: #CCC;
+}
+
+#dialogbox>div>#dialogboxbody {
+  background: #333;
+  padding: 20px;
+  color: #FFF;
+}
+
+#dialogboxfoot {
+  background: silver;
+  padding: 10px;
+  text-align: center;
+  position: static;
+  justify-content: center;
+  vertical-align: bottom;
+}

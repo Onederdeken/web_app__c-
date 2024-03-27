@@ -1,0 +1,36 @@
+@using Application2.Models;
+@model User;
+@using System.Drawing;
+@using Microsoft.Web.Helpers;
+@using System.IO;
+<div class="div_regist">
+    <form asp-action="ChangeProfile" asp-controller="Accaunt" method="post" enctype="multipart/form-data">
+       <div class="div_input">
+            <label for="NickName"></label>
+            <input class="input_regist" asp-for="NickName" placeholder="NickName" value=@Model.NickName><br/>
+         </div>
+         <div class="div_input">
+            <label for="Password"></label>
+            <input class="input_regist" asp-for="Password" type="text" placeholder="password" value=@Model.Password><br>
+         </div>
+         <div style="display: none;" >
+            <input   asp-for="role" value=@Model.role hidden><br>
+         </div>
+         <div style="display: none;">
+            <label for="Email"></label>
+            <input  asp-for="Email" placeholder="email" value=@Model.Email hidden /><br/>
+         </div>
+         <div style="display: none;">
+            <label for="Telephone"></label>
+            <input   asp-for="Telephone" value=@Model.Telephone hidden> <br>
+         </div>
+         <div>
+            <input type="text" asp-for="DirectoryPhotoUser" value=@Model.DirectoryPhotoUser hidden>
+         </div>
+         <div>
+            <input type="text" asp-for="Id" value=@Model.Id hidden>
+         </div>
+            
+         <button class="buttons"  type="submit">редактировать профиль</button>
+    </form>
+</div>

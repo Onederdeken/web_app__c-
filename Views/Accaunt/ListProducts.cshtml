@@ -1,0 +1,51 @@
+@model List<Product>
+
+@{
+    <div class="div_main">
+        @if(Model == null){
+            <p>Корзина пуста</p>
+        }
+        else{
+            <div class="main_content">
+                @foreach(var item in Model){
+                    <div class="cart">
+                        <form asp-action="DeleteProduct" asp-controller="Accaunt" method="post">
+                            <div class="img_cart_div">
+                                <img class="img_cart" src=@item.DirectoryPhotoProduct height="150" width="250"> 
+                            </div>
+                            <div class="content_cart_div">
+                                <label  for="Name">@item.Name</label>
+                            </div>
+                            <div class="content_cart_div">
+                                <label  for="Description" >@item.Description</label>
+                            </div>
+                            <div class="content_cart_div">
+                                <label  for="cost">@item.cost</label>
+                            </div>
+                            
+                            <div class="input_cart_div">
+                                <input  type="text" value=@item.Id hidden name="ID">
+                            </div>
+                            <div class="div_button_cart">
+                                <button  class="button_out" type="submit">удалить товар</button>
+                            </div>
+                        </form>
+                    </div>
+                }
+            </div>
+                    
+                    
+                
+
+        }
+        
+    </div>
+    <div class="div_button_add">
+        <button class="buttons" type="button"  onclick="location.href='@Url.Action("AddProducts", "Accaunt")'">Добавить товар</button>
+    </div>
+
+    
+
+
+
+}

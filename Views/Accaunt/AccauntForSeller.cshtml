@@ -1,0 +1,37 @@
+@model Seller
+
+<div class="main_content_accaunt">
+    <h1>Аккаунт продавца</h1>
+    <div class="content_photo">
+        <div class="img_accaunt" >
+            <img class="img_accaunt_input" src=@Model.DirectoryPhotoUser>
+        </div>
+
+        <div class="div_button_change_photo">
+            <form asp-action="ChangePhoto" asp-controller="Accaunt" enctype="multipart/form-data">
+                <span class="button_photo" >
+                    <button  class="Button_change_photo" type="button"><label for="PhotoChange"><input onchange="var batton = document.querySelector('.Button_change_photo');batton.setAttribute('type','submit'); batton.click()" type="file" name="filebase" id="PhotoChange" multiple hidden>изменить фото</label></button>      
+                </span>  
+            </form>
+        </div>
+    </div>
+    <div class="main_info" >
+        <div class="info_user" >
+            <label for="NickName">Имя: @Model.NickName</label>
+        </div>
+        <div class="info_user">
+            <label for="Telephone">Телефон: @Model.Telephone</label>
+        </div>
+        <div class="info_user"> 
+            <label for="CountMoney"> деньги на счету:@Model.CountMoney ₽</label>
+        </div>
+        <div>
+            <button class="buttons" type="button" onclick="location.href='@Url.Action("ChangeProfile", "Accaunt")'">Редактировать профиль</button>
+        </div>
+        <div>
+            <button class="button_out" onclick="location.href='@Url.Action("OutAcc", "Accaunt")'" type="submit">Выйти из аккаунта</button>
+        </div>
+    </div>
+    
+    
+</div>

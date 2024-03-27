@@ -1,0 +1,27 @@
+.div_regist_product{
+    height: auto;
+    width: 800px;
+    min-height: 500px;
+    border: 3px solid black;
+    border-radius: 40px;
+    margin:auto;
+    background-color: white;
+    font-size: x-large;
+    display: flex;
+}
+.div_regist_product_photo{
+    width: 100%;
+    align-items: center;
+    display: inline-flex;
+    justify-items: center;
+    margin: 0 50px;
+}
+.img_photo_product{
+    width: 250px;
+    height: 250px;
+    border: 3px solid black;
+    border-radius: 30px;
+}
+.div_regist_input_data_product{
+    margin:auto;
+}

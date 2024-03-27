@@ -1,0 +1,98 @@
+﻿@model List<Product>
+@using Application2.DATA;
+@using Application2.Models;
+@using db
+@using Microsoft.EntityFrameworkCore;
+@using Application2.Models;
+
+<script src="/home/user/Source/test_drive/Application2/wwwroot/js/Accaunt.js"></script>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Home Page";
+    var contextOptions = new DbContextOptionsBuilder<Context>()
+        .UseMySql("server=localhost;user=root;password=fylhtq9049791;database=Application2", ServerVersion.AutoDetect("server=localhost;user=root;password=fylhtq9049791;database=Application2;"))
+        .Options;
+ 
+    Context _DB = new Context(contextOptions);
+    var list = _DB.Categories;
+}
+<div onmouseleave="var div1 = document.getElementById('catiddiv');div1.style.backgroundColor='transparent'; var div = document.getElementById('catid'); div.style.left='-360px'; div1.style.borderRight='none'" class="sidebar">
+    <div class="cat_fix" id="catiddiv">
+        <p  onmouseover="var div = document.getElementById('catid'); div.style.left='0'; div.style.transitionProperty='all';document.getElementById('catiddiv').style.backgroundColor='#77d4d4'; div.style.transitionDuration='1s'; var div1 = document.getElementById('catiddiv'); div1.style.borderRight='7px'; div1.style.borderRightColor='#000000'; div1.style.borderRightStyle='solid'" class="button_cat">Категории</p>
+        <div class="cat" id="catid">
+            <ul >
+                <form  asp-action="Index" asp-controller="Home" method="get">
+                    @foreach(var cat in list ){
+                        
+                        <input  name="grand"  asp-action="Index" asp-controller="Home" type="submit" class="li_cat" value=@cat.NameCategory>
+                    }
+                </form>
+            </ul>
+        </div>
+    </div>
+    
+</div>
+<div class="div_main">
+    <div class="search">
+        <form id="forma_search" class="search_form" asp-action="Index" asp-controller="Home" method="get">
+            <input class="search_input"  name="name" type="text" placeholder="искать" > <button class="button_search" type="submit"><img class="search_img" src="/home/user/Source/test_drive/Application2/wwwroot/img/app_img/search.png"></button>
+        </form>
+    </div>
+    @if(Model!=null){
+        <div class="main_content" >
+            @foreach (var item in Model)
+            {  
+                <div class="cart">
+                    <form asp-action="addCart" asp-controller="Home">
+                        <div class="img_cart_div">
+                            <img class="img_cart" src=@item.DirectoryPhotoProduct >
+                        </div>
+                        <div class="content_cart_div">
+                            <label> @item.Name</label>
+                        </div>
+                        <div class="content_cart_div">
+                            <label>@item.Description</label>
+                        </div>
+                        
+                        <div class="input_cart_div">
+                            <input value=@item.Id hidden asp-for=@item.Id name="Id" >
+                        </div>
+                        <div class="content_cart_div">
+                            <p>Стоит:<label>@item.cost</label></p>
+                        </div>
+                        
+                        
+                        @if(data.role=="Person"){
+                            <div class="div_button_cart">
+                                <button class="buttons"  onclick="location.href='@Url.Action("addCart", "Home")'; document.getElementById('massage_cart').style.display='block'"> в корзину </button>
+                            </div>
+                        
+                            var user = await _DB.Persons.Include(c=>c.Products).FirstOrDefaultAsync(x=>x.Id==Guid.Parse(data.ID));
+                            if(user.Products.Count != 0){
+                                ViewData["massage_cart"] = "Этот товар уже добавлен в корзину";
+                            }
+                        
+                            <div id="massage_cart" style="display: none;">
+                                <p>@ViewData["massage_cart"]</p>
+                            </div>
+                            
+                        }
+                    </form>
+                </div>
+            }
+        </div> 
+    }
+    else{
+        <div >
+
+            <p>@ViewData["message"]</p>
+        </div> 
+
+
+    }
+
+</div>
+
+
+
+

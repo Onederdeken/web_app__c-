@@ -1,0 +1,101 @@
+@model List<Product>
+@using Microsoft.AspNetCore.Http;
+
+<script src="/home/user/Source/test_drive/Application2/wwwroot/js/Cart.js"></script>
+<script>
+    function CustomAlert() {
+    this.render = function(dialog) {
+      var winW = window.innerWidth;
+      var winH = window.innerHeight;
+      var dialogoverlay = document.getElementById('dialogoverlay');
+      var dialogbox = document.getElementById('dialogbox');
+      dialogoverlay.style.display = "flex";
+      dialogoverlay.style.height = winH + "px";
+      dialogbox.style.left = (winW / 2) - (550 * .5) + "px";
+      dialogbox.style.top = "100px";
+      dialogbox.style.display = "flex";
+      dialogbox.style.flexDirection = "column";
+      document.getElementById('dialogboxhead').innerHTML = "";
+      document.getElementById('dialogboxbody').innerHTML = dialog;
+      document.getElementById('dialogboxfoot').innerHTML = '<button type="button" onclick="Alert.ok()">OK</button>';
+    }
+    this.ok = function() {
+      document.getElementById('dialogbox').style.display = "none";
+      document.getElementById('dialogoverlay').style.display = "none";
+    }
+  }
+  var Alert = new CustomAlert();
+
+
+</script>
+
+</script>
+<link rel="stylesheet" href="/home/user/Source/test_drive/Application2/wwwroot/css/site.css">
+@using Microsoft.EntityFrameworkCore;
+@using db;
+@using Application2.DATA;
+@using Application2.Models;
+
+@{
+    var contextOptions = new DbContextOptionsBuilder<Context>()
+        .UseMySql("server=localhost;user=root;password=fylhtq9049791;database=Application2", ServerVersion.AutoDetect("server=localhost;user=root;password=fylhtq9049791;database=Application2;"))
+        .Options;
+ 
+    Context context = new Context(contextOptions);
+    Person? person = context.Persons.Find(Guid.Parse(data.ID));
+    <div class="div_main">
+        @if(Model.Count == 0){
+            <p>Корзина пуста</p>
+        }
+        else{
+            <div  class="main_content">
+                @foreach (var item in Model)
+                {   
+                    <div class="cart">
+                        <span>
+                            <div class="img_cart_div">
+                                <img class="img_cart" src=@item.DirectoryPhotoProduct>
+                            </div>
+                            <div class="content_cart_div">
+                                <label for="Name">@item.Name</label>
+                            </div>  
+                            <div class="content_cart_div"> 
+                                <label for="Description" >@item.Description</label>
+                            </div>
+                            <div class="content_cart_div">
+                                <label for="cost" >@item.cost ₽</label>
+                            </div>
+                                
+                
+                            <div>
+                                <form asp-action="Cart" asp-controller="Accaunt" method="post">
+                                    <input type="text" value="@item.Id" name="IdProduct" hidden >
+                                    <p>@ViewData["message"]</p>
+                                    <button class="buttons" onclick="CheckBuy(@item.cost, @person.CMoney)"  type="submit" >купить</button>
+                                </form>
+                                @if(ViewBag.ID == @item.Id){
+                                    <p>@ViewData["massage"]</p>
+                                }
+                            </div>
+                            <div>
+                                <form asp-action="DeleteProduct" asp-controller="Accaunt" method="post" >
+                                    <input type="text" value="@item.Id" name="Id" hidden>
+                                    <button class="button_out" type="submit" >удалить</button> 
+                                </form>
+                            </div>
+                        </span>
+                    </div>
+                    
+                }
+            </div>
+        }
+
+    </div>
+    <div id="dialogoverlay"></div>
+    <div id="dialogbox">
+        <div id="dialogboxhead"></div>
+        <div id="dialogboxbody"></div>
+        <div id="dialogboxfoot"></div>
+    </div>
+
+}

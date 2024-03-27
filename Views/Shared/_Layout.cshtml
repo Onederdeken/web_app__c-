@@ -1,0 +1,68 @@
+﻿@using Application2.DATA;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Application</title>
+    <link rel="stylesheet" href="/home/user/Source/test_drive/Application2/wwwroot/css/Layout.css">
+    <link rel="stylesheet" href="/home/user/Source/test_drive/Application2/wwwroot/css/Home.css">
+    <link rel="stylesheet" href="/home/user/Source/test_drive/Application2/wwwroot/css/Accaunt.css">
+    <link rel="stylesheet" href="/home/user/Source/test_drive/Application2/wwwroot/css/regist.css">
+    <link rel="stylesheet" href="/home/user/Source/test_drive/Application2/wwwroot/css/regist_tovar.css">
+    <script src="/home/user/Source/test_drive/Application2/wwwroot/js/site.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.maskedinput@1.4.1/src/jquery.maskedinput.js" type="text/javascript"></script>
+</head>
+<body>
+    <header>
+        <nav >
+            <div class="logo">
+                    <a  asp-area="" asp-controller="Home" asp-action="Index">logo</a>
+            </div>    
+            <div class="nav_div">
+                <ul class="menu" >
+                    <li >
+                        <a  asp-area="" asp-controller="Home" asp-action="Index"><span class="span">Home</span></a>
+                    </li>
+                    @if(data.ID == "0"){
+                        <li >
+                            <a  asp-controller="Registration" asp-action="Regist"><span class="span">Rigister</span></a>
+                        </li>
+                        <li >
+                            <a  asp-controller="Vhod" asp-action="Vhod"><span class="span">Vhod</span></a>
+                        </li>
+                    }
+                    else{
+                        @if(data.role == "Person"){
+                            <li >
+                                <a  asp-controller="Accaunt" asp-action="Cart"><img class="znachok" src="/home/user/Source/test_drive/Application2/wwwroot/img/app_img/корзина.png" alt=""></a>
+                            </li>
+                        }
+                        else{
+                            <li >
+                                <a  asp-controller="Accaunt" asp-action="ListProducts"><img class="znachok" src="/home/user/Source/test_drive/Application2/wwwroot/img/app_img/корзина.png" alt=""></a>
+                            </li>
+                        }
+                        
+                    }
+                
+                    <li>
+                        <a  asp-controller="Accaunt" asp-action="Accaunt"><img class="znachok" src="/home/user/Source/test_drive/Application2/wwwroot/img/app_img/accaunt.png" ></a>
+                    </li>
+                
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="main">
+        @RenderBody()
+    </main>
+    
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

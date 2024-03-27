@@ -1,0 +1,23 @@
+@model User
+
+<div class="div_regist">
+    <form asp-controller="Vhod" asp-action="Vhod" method="post">
+        <div  class="div_input">
+            <label for="Email"></label>
+            <input  class="input_regist" asp-for="Email" placeholder="Email"><br>
+        </div>
+        <div  class="div_input">
+            <label for="Password"></label>
+            <input  class="input_regist" asp-for="Password" placeholder="password"><br>
+        </div>
+        <div>
+            <button class="buttons" type="submit">Вход</button>
+        </div>
+        <div class="error mesage">
+            <label for="">@ViewData["error"]</label>
+        </div>
+    </form>
+    <div>
+        <p class="ErrorMesage">@ViewData["ErrorMesage"]</p>
+    </div>
+</div>

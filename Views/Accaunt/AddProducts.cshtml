@@ -1,0 +1,55 @@
+@model ManagerProduct;
+@using Application2.Manager;
+@using System.Drawing;
+@using Microsoft.Web.Helpers;
+
+
+<div class="div_regist_product">
+      
+    <div class="div_regist_input_data_product">
+        <form asp-action="AddProducts" asp-controller="Accaunt" method="post" enctype="multipart/form-data">
+            <div class="div_input">
+                <label for="CategoryNameCategory"></label>
+                <select  id="RoleSelect"  name="role">
+                    <option value="choose category" disabled selected>Choose category</option>
+                    <option value="Одежда">Одежда</option>
+                    <option value="Электроника">Электроника</option>
+                    <option value="Бытовая техника">Бытовая техника</option>
+                    <option value="Товары для дома">Товары для дома</option>
+                </select>
+            </div>
+            <div class="div_input">
+                <label for="Name"></label>
+                <input class="input_regist" asp-for="Name" placeholder="ИМЯ">
+            </div>
+            <div class="div_input">
+                <label for="cost"></label>
+                <input  class="input_regist" id="tr" type="number" asp-for="cost" placeholder="стоимость">
+                <script>
+                    $('body').on('input', '#tr', function(){
+                    this.value = this.value.replace(/[^0-9\.\,]/g, '');
+                     });
+                </script>
+                
+            </div>
+             <div>
+                <span class="button_photo" >
+                   <input type="file"  name="fileBase" id="PhotoChangeProduct"  multiple>
+                </span> 
+            </div>
+            <div class="div_input">
+                <label for="Discription"></label>
+                <input class="input_regist" asp-for="Description" placeholder="Описание продукта">
+            </div>
+            <div>
+                <p>@ViewData["massage_error"]</p>
+            </div>
+            <div class="div_regist_button">
+                <div class="div_input">
+                    <input  class="buttons" asp-action="AddProducts" asp-controller="Accaunt" type="submit" value="Добавить товар">
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

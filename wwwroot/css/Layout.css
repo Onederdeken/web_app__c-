@@ -1,0 +1,84 @@
+.znachok{
+    width: 40px;
+    height: 40px;
+    &:hover{
+        background-color: orange;;
+        border-radius: 100% ;
+        color: orange;
+    }
+}
+body{
+    
+    height: auto;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: paleturquoise;
+}
+.nav_div li{
+    display: inline-block;
+}
+header{
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    width: 100%;
+   
+}
+a{
+    margin-right: 20px;
+    margin-left: 20px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    vertical-align: middle;
+    color: black;
+    height: 30px;
+  
+
+}
+.span{  
+    border-bottom: 3px solid black;
+    &:hover{
+       padding-bottom: 10px;
+       border-color: orange;
+       color: orange;
+    }
+}
+.logo, .nav_div, .menu{
+    height: 100%;
+}
+.logo{
+    display: block;
+    margin-right: 67%;
+    margin-left:1%;
+    
+}
+.menu{
+    display: inline-flex;
+    position: relative;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    
+}
+nav{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 60px;
+    
+}
+.main{
+    display:flex;
+    text-align: center;
+    font-size: x-large;
+    width: 100%;
+    
+}
+.input{
+    font-size: large;
+    color:black;
+}
